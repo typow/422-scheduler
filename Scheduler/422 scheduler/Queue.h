@@ -11,7 +11,7 @@ typedef enum {false=0, true=1} bool;
 
 
 typedef struct {
-	PCBPtr *PCBarray[100]; //the backing array for the queue of PCBPtr
+	PCBPtr PCBarray[100]; //the backing array for the queue of PCBPtr
 	int head;
 	int tail;
 	int current_size;

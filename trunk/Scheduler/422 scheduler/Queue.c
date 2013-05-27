@@ -13,17 +13,15 @@
 
 
 PCBQueuePtr queueConstructor() {
-	printf("before q constructor\n");
 	PCBQueuePtr queue = (PCBQueuePtr) malloc(sizeof(PCBQueue));
 	queue->head = queue->tail = 0;
 	queue->current_size = 0;
 	queue->PCBarray[queue->head] = NULL;
-	printf("end of q constructor\n");
 	return queue;
 }
 
 PCBPtr dequeue(PCBQueuePtr pcbq) {
-	 PCBPtr returnPCB = *pcbq->PCBarray[pcbq->head];
+	 PCBPtr returnPCB = pcbq->PCBarray[pcbq->head];
 	 pcbq->PCBarray[pcbq->head] = NULL;
 	 pcbq->head = (pcbq->head + 1) % 100;
 	 pcbq->current_size--;
@@ -31,7 +29,7 @@ PCBPtr dequeue(PCBQueuePtr pcbq) {
 }
 
 void enqueue(PCBPtr the_pcb, PCBQueuePtr pcbq) {
-	*pcbq->PCBarray[pcbq->tail] = the_pcb;
+	pcbq->PCBarray[pcbq->tail] = the_pcb;
 	pcbq->tail = (pcbq->tail + 1) % 100;
 	pcbq->current_size++;
 }
@@ -53,16 +51,24 @@ bool isFull(PCBQueuePtr pcbq) {
 }
 
 int main() {
-	printf("in main before evrything\n");
 	PCBQueuePtr pcbq = queueConstructor();
 	PCBPtr pcb1 = pcbConstructor(1);
 	PCBPtr pcb2 = pcbConstructor(2);
 	PCBPtr pcb3 = pcbConstructor(3);
+	printf("isEmpty(expect 1)?: %d\n", isEmpty(pcbq));
 	enqueue(pcb1, pcbq);
-	printf("expect 1: %d", dequeue(pcbq)->pid);
+	printf("isEmpty(expect 0)?: %d\n", isEmpty(pcbq));
+	printf("expect 1: %d\n", dequeue(pcbq)->pid);
 	enqueue(pcb1, pcbq);
 	enqueue(pcb2, pcbq);
-	printf("expect 2: %d", dequeue(pcbq)->pid);
-
+	dequeue(pcbq);
+	printf("expect 2: %d\n", dequeue(pcbq)->pid);
+	printf("isEmpty(expect 1)?: %d\n", isEmpty(pcbq));
+	int i;
+	printf("isFull(expect 0)?: %d\n", isFull(pcbq));
+	for(i = 0; i < 100; i++) {
+		enqueue(pcb3, pcbq);
+	}
+	printf("isFull(expect 1)?: %d\n", isFull(pcbq));
 	return 0;
 }

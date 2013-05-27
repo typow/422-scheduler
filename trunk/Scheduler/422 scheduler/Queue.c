@@ -11,7 +11,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
+/*
+ * Constructs a Queue that contains PCBPtr.
+ */
 PCBQueuePtr queueConstructor() {
 	PCBQueuePtr queue = (PCBQueuePtr) malloc(sizeof(PCBQueue));
 	queue->head = queue->tail = 0;
@@ -20,6 +22,10 @@ PCBQueuePtr queueConstructor() {
 	return queue;
 }
 
+/*
+ * Returns the PCBPtr at the head of the queue and decrements the current size while setting
+ * the old head value to NULL;
+ */
 PCBPtr dequeue(PCBQueuePtr pcbq) {
 	 PCBPtr returnPCB = pcbq->PCBarray[pcbq->head];
 	 pcbq->PCBarray[pcbq->head] = NULL;
@@ -28,12 +34,18 @@ PCBPtr dequeue(PCBQueuePtr pcbq) {
 	 return returnPCB;
 }
 
+/*
+ * Adds the_pcb PCBPtr to the end of the queue increments the size.
+ */
 void enqueue(PCBPtr the_pcb, PCBQueuePtr pcbq) {
 	pcbq->PCBarray[pcbq->tail] = the_pcb;
 	pcbq->tail = (pcbq->tail + 1) % 100;
 	pcbq->current_size++;
 }
 
+/*
+ * Returns 1 if the queue is empty 0 if not.
+ */
 bool isEmpty(PCBQueuePtr pcbq) {
 	bool result = false;
 	if(pcbq->PCBarray[pcbq->head] == NULL) {
@@ -42,6 +54,9 @@ bool isEmpty(PCBQueuePtr pcbq) {
 	return result;
 }
 
+/*
+ * Returns 1 if the queue is full 0 if not.
+ */
 bool isFull(PCBQueuePtr pcbq) {
 	bool result = false;
 	if(pcbq->current_size == 100) {
@@ -50,6 +65,7 @@ bool isFull(PCBQueuePtr pcbq) {
 	return result;
 }
 
+//Test for the Queue
 int main() {
 	PCBQueuePtr pcbq = queueConstructor();
 	PCBPtr pcb1 = pcbConstructor(1);

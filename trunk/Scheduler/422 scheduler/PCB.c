@@ -11,7 +11,9 @@
 #include <stdlib.h>
 
 
-
+/*
+ * Currently just used to test that queue works.
+ */
 PCBPtr pcbConstructor(int testnum) {
 	PCBPtr pcb = (PCBPtr) malloc(sizeof(PCBStr));
 	pcb->pid = testnum;

@@ -28,6 +28,7 @@ void switchOwner(MutexPtr mutex) {
 	mutex->ownerID->owns = 0;
 	mutex->ownerID = dequeue(mutex->mutexQueue);
 	mutex->ownerID->owns = mutex->mutexID;
+	mutex->ownerID->state = 1;
 }
 
 /*

@@ -64,7 +64,7 @@ bool isFull(PCBQueuePtr pcbq) {
 	}
 	return result;
 }
-
+/*
 //Test for the Queue
 int main() {
 	PCBQueuePtr pcbq = queueConstructor();
@@ -88,3 +88,4 @@ int main() {
 	printf("isFull(expect 1)?: %d\n", isFull(pcbq));
 	return 0;
 }
+*/

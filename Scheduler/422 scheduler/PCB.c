@@ -12,10 +12,15 @@
 
 
 /*
- * Currently just used to test that queue works.
+ * Constructs a PCB.
  */
-PCBPtr pcbConstructor(int testnum) {
+PCBPtr pcbConstructor(int pid, ProcessPtr proc) {
 	PCBPtr pcb = (PCBPtr) malloc(sizeof(PCBStr));
-	pcb->pid = testnum;
+	pcb->pid = pid;
+	pcb->proc = proc;
+	pcb->state = 1;
+	pcb->next_step = 0;
+	pcb->waiting_on = 0;
+	pcb->owns = 0;
 	return pcb;
 }

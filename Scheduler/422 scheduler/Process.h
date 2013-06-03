@@ -9,4 +9,6 @@ typedef struct {
 						// time step. These are the synchronous events that result in traps being issued.
 						// You can get fancy and make this an array of RequestTypeStr which contains the
 						// step number when issued, and a request type (e.g. 0=io, 1=sync, etc.)
-} ProcessStr;
+} ProcessStr, *ProcessPtr;
+
+ProcessPtr processConstructor(int);

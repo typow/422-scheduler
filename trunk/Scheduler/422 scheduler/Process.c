@@ -9,6 +9,8 @@
 #include "Process.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <pthread.h>
+#include <time.h>
 
 /*
  * Constructs a Process
@@ -26,3 +28,4 @@ ProcessPtr processConstructor(int proc_type){
 	}
 	return proc;
 }
+

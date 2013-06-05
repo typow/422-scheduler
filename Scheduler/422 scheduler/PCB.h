@@ -4,7 +4,9 @@
  *  Created on: May 22, 2013
  *      Author: TyPow
  */
-
+#include <stdio.h>
+#include <stdlib.h>
+#include "Process.h"
 
 
 typedef struct {
